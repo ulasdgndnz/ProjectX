@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
         while (Vector3.Distance(transform.position, targetPosition) > 0f)
         {
             var position = transform.position;
-            transform.forward = Vector3.Lerp(transform.forward,-(position - targetPosition), 2f * Time.deltaTime);
+            transform.forward = Vector3.LerpUnclamped(transform.forward,-(position - targetPosition), 0.1f);
             position = Vector3.MoveTowards(position, targetPosition, 5 * Time.deltaTime);
             transform.position = position;
             yield return _waitEof;
